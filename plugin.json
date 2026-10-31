@@ -1,0 +1,91 @@
+{
+  "id": "openwaters",
+  "name": "Open Waters Charts",
+  "version": "0.1.0",
+  "description": "Open Waters' nautical-style maps as basemaps: Seamap (depths, seamarks, lights and sectors, traffic separation schemes and hazards) and Seascape (seafloor depth shading, contours and soundings from global open bathymetry). Not for navigation.",
+  "author": "Milo",
+  "homepage": "https://openwaters.io/charts/",
+  "license": "MIT",
+  "entry": "plugin.wasm",
+  "abi": 1,
+  "minRustgisVersion": "0.3.0",
+  "permissions": ["edit", "network"],
+  "commands": [
+    {
+      "id": "seamap",
+      "label": "Seamap",
+      "help": "Use Open Waters' Seamap as the basemap: depths, seamarks, lights and hazards. Not for navigation: consult official charts.",
+      "icon": "basemap",
+      "params": "{\"add\"?: bool (stack it over the current basemaps instead of replacing them)}"
+    },
+    {
+      "id": "seascape",
+      "label": "Seascape Chart",
+      "help": "Use Open Waters' Seascape as the basemap: a chart of the seafloor with depth shading, contours and soundings. Not for navigation: consult official charts.",
+      "icon": "basemap",
+      "params": "{\"add\"?: bool (stack it over the current basemaps instead of replacing them), \"unit\"?: \"m\" | \"ft\" | \"fm\" (depth unit, default m), \"safety\"?: number (shade water shallower than this many metres as a hazard, default 2), \"shading\"?: \"relief\" | \"bands\" (continuous shading or depth-area bands, default relief)}"
+    },
+    {
+      "id": "seascape-relief",
+      "label": "Seascape Relief",
+      "help": "Seascape as shaded relief of land and seafloor together.",
+      "icon": "relief",
+      "params": "{\"add\"?: bool (stack it over the current basemaps instead of replacing them)}"
+    },
+    {
+      "id": "seascape-hillshade",
+      "label": "Seascape Hillshade",
+      "help": "Seascape as grey hillshading of the seafloor alone, with land in flat grey.",
+      "icon": "relief",
+      "params": "{\"add\"?: bool (stack it over the current basemaps instead of replacing them)}"
+    },
+    {
+      "id": "seascape-topo",
+      "label": "Seascape Topo",
+      "help": "Seascape as a red-to-blue depth tint with labelled metric contours, in the style of survey and fishing charts.",
+      "icon": "relief",
+      "params": "{\"add\"?: bool (stack it over the current basemaps instead of replacing them)}"
+    },
+    {
+      "id": "remove",
+      "label": "Remove\nCharts",
+      "help": "Take the Open Waters maps off the map.",
+      "icon": "clear_sel"
+    }
+  ],
+  "tab": {
+    "label": "Open Waters",
+    "groups": [
+      {
+        "label": "Charts",
+        "items": [
+          "seamap",
+          {
+            "menu": "Seascape",
+            "icon": "relief",
+            "help": "Open Waters' Seascape: the seafloor from global open bathymetry, as a chart or in other views.",
+            "items": ["seascape", "seascape-relief", "seascape-hillshade", "seascape-topo"]
+          }
+        ]
+      },
+      { "label": "Manage", "items": ["remove"] }
+    ]
+  },
+  "i18n": {
+    "nl": {
+      "Open Waters Charts": "Open Waters Kaarten",
+      "Charts": "Kaarten",
+      "Manage": "Beheren",
+      "Seamap": "Zeekaart",
+      "Seascape": "Zeebodem",
+      "Seascape Chart": "Zeebodemkaart",
+      "Seascape Relief": "Zeebodem reliëf",
+      "Seascape Hillshade": "Zeebodem schaduwreliëf",
+      "Seascape Topo": "Zeebodem topo",
+      "Remove\nCharts": "Kaarten\nverwijderen",
+      "Basemap: {name} (not for navigation)": "Basemap: {name} (niet voor navigatie)",
+      "Removed {names}": "{names} verwijderd",
+      "No Open Waters maps on the map": "Geen Open Waters-kaarten op de kaart"
+    }
+  }
+}
